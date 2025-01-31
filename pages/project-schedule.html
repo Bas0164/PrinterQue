@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printafile Form</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.scss">
+    <link rel="stylesheet" href="../css/printerform.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="dashboard-student.html">Printafile</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="dashboard-student.html" class="sidebar-link">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="print-calender.html" class="sidebar-link">
+                        <i class="bi bi-calendar-fill"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="printerform.html" class="sidebar-link">
+                        <i class="bi bi-printer-fill"></i>
+                        <span>Upload</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="profile.html" class="sidebar-link">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link" id="logout-button">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main p-3 d-flex justify-content-center flex-column" style="align-items: center; text-align: center;">
+            <h1 class="text-center" id="pageHeading">Schedule Print</h1>
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <!-- Modal for confirming time slot -->
+<div class="modal fade" id="timeRangeModal" tabindex="-1" aria-labelledby="timeRangeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="timeRangeModalLabel">Confirm Time Slot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="selectedTimeRange" class="text-muted"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveTimeRange">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+</body>
+<script type="module">
+    import { logoutUser } from "../js/user.js";
+    import { fetchEvents, handleCreateEvent, handleEventUpdate, handleEventClick } from "../js/scheduleTime.js";
+
+    function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1); // Remove the leading "?"
+    const pairs = queryString.split("&");
+
+    for (const pair of pairs) {
+        const [key, value] = pair.split("=");
+        params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+    }
+    return params;
+}
+
+const queryParams = getQueryParams();
+const printerId = queryParams.printer_id;
+const printerName = queryParams.printer_name;
+
+console.log("Printer ID:", printerId);
+console.log("Printer Name:", printerName);
+
+// Update the page heading
+if (printerName) {
+    document.getElementById("pageHeading").innerText = `Schedule Print for Printer ${printerName}`;
+} else {
+    document.getElementById("pageHeading").innerText = `Schedule Print for Printer ${printerId}`;
+}
+
+
+    if (!printerId) {
+        alert("No printer ID found in the URL.");
+    } else {
+        // Initialize FullCalendar with the printer_id
+        initializeCalendar(printerId);
+    }
+
+// Function to initialize FullCalendar
+function initializeCalendar(printerId) {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek', // Set the default view to week
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay' // Allow switching between views
+        },
+        events: (fetchInfo, successCallback, failureCallback) => fetchEvents(printerId, fetchInfo, successCallback, failureCallback), // Fetch events for the selected printer
+        editable: true, // Allow dragging and resizing events
+        selectable: true, // Allow selecting time slots
+        select: (selectInfo) => handleCreateEvent(printerId, selectInfo, calendar), // Handle event creation
+        eventClick: handleEventClick, // Handle event clicks (e.g., edit or delete)
+        eventDrop: handleEventUpdate, // Handle event dragging (update)
+        eventResize: handleEventUpdate, // Handle event resizing (update)
+        selectMirror: true, // Show a mirror of the selected time slot
+        dayMaxEvents: true, // Allow "more" links when too many events
+        nowIndicator: true, // Show a marker for the current time
+    });
+
+    calendar.render();
+}
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const userId = localStorage.getItem("user_id");
+
+        if (!userId) {
+            console.warn("Geen user_id gevonden. Doorsturen naar loginpagina.");
+            window.location.href = "login.html";
+            return;
+        }
+    });
+
+    document.getElementById("logout-button").addEventListener("click", () => {
+        logoutUser(); // Roep de uitlogfunctie aan
+    });
+</script>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printafile Form</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.scss">
+    <link rel="stylesheet" href="../css/printerform.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="dashboard-student.html">Printafile</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="dashboard-student.html" class="sidebar-link">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="print-calender.html" class="sidebar-link">
+                        <i class="bi bi-calendar-fill"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="printerform.html" class="sidebar-link">
+                        <i class="bi bi-printer-fill"></i>
+                        <span>Upload</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="profile.html" class="sidebar-link">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link" id="logout-button">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main p-3 d-flex justify-content-center" style="align-items: center; text-align: center;">
+            <div id="calendar"></div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+
+            // Kalender
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'nl',
+                firstDay: 1,
+                initialView: 'customTwoWeeks',
+                views: {
+                    customTwoWeeks: {
+                        type: 'dayGrid',
+                        duration: { weeks: 2 },
+                        buttonText: '2 Weken'
+                    }
+                },
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'customTwoWeeks,dayGridMonth'
+                },
+                buttonText: {
+                    today: 'Vandaag',
+                    month: 'Maand',
+                    day: 'Dag'
+                },
+                events: 'schedule.js',
+                editable: true,
+                selectable: true,
+                dateClick: function (info) {
+                    alert('Geselecteerde datum: ' + info.dateStr);
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+    <script type="module">
+        import { fetchSchedule } from "../js/schedule.js";
+        import { logoutUser } from "../js/user.js";
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            const userId = localStorage.getItem("user_id");
+    
+            if (!userId) {
+                console.warn("Geen user_id gevonden. Doorsturen naar loginpagina.");
+                window.location.href = "login.html";
+                return;
+            }
+    
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'nl',
+                firstDay: 1,
+                initialView: 'customTwoWeeks',
+                views: {
+                    customTwoWeeks: {
+                        type: 'dayGrid',
+                        duration: { weeks: 2 },
+                        buttonText: '2 Weken'
+                    }
+                },
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'customTwoWeeks,dayGridMonth'
+                },
+                buttonText: {
+                    today: 'Vandaag',
+                    month: 'Maand',
+                    day: 'Dag'
+                },
+                events: function(fetchInfo, successCallback, failureCallback) {
+                    fetchSchedule((scheduleData) => {
+                        successCallback(scheduleData);
+                    });
+                },
+                editable: true,
+                selectable: true,
+                dateClick: function (info) {
+                    alert('Geselecteerde datum: ' + info.dateStr);
+                },
+                eventClick: function(info) {
+                    alert('Geselecteerde event: ' + info.event.title);
+                }
+            });
+    
+            calendar.render();
+        });
+    
+        document.getElementById("logout-button").addEventListener("click", () => {
+            logoutUser();
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

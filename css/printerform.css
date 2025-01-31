@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #a2dae8;
+  --secondary-color: #9ADE19;
+  --white-color: #ffffff;
+  --info-color: #f8f8f8;
+  --error-color: #EB5757;
+  --black-color: #000000;
+  --black-color2: #1D1D1D;
+  --black-color3: #282828;
+  --gray-color: #333333;
+  --gray-color2: #4F4F4F;
+  --gray-color3: #828282;
+  --gray-color4: #BDBDBD;
+  --gray-color5: #E0E0E0;
+  --card-inset: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --font-family-base: 'Poppins', sans-serif;
+  /* Base font family */
+  --font-size-small: 0.875rem;
+  /* Small text, equivalent to 14px */
+  --font-size-base: 1rem;
+  /* Base text, equivalent to 16px */
+  --font-size-medium: 1.25rem;
+  /* Medium text, equivalent to 20px */
+  --font-size-large: 1.5rem;
+  /* Large text, equivalent to 24px */
+  --font-size-xlarge: 2rem;
+  /* Extra large text, equivalent to 32px */
+  --font-size-xxlarge: 3rem;
+  /* Double extra large, equivalent to 48px */
+}
+
+/* Basic CSS Reset and Font Settings */
+:root {
+  --font-family-base: 'Poppins', sans-serif;
+  /* Base font family */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-base);
+  /* Use Poppins for all text */
+  font-size: 16px;
+  /* Default font size */
+  line-height: 1.5;
+  /* Good readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.upload-form {
+  height: 600px;
+  width: 500px;
+  background-color: var(--black-color2);
+  border: black 3px solid;
+}
+
+.upload-title {
+  font-size: var(--font-size-large);
+  border-bottom: black 3px solid;
+  padding: 1rem;
+  text-align: center;
+}
+
+.upload-form-fields {
+  padding: 0 4rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.upload-button-start {
+  background-color: var(--secondary-color);
+  color: var(--black-color);
+  border: black 3px solid;
+  border-radius: 20px;
+  font-weight: bold;
+  width: 23rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+
+
+/* ---------------Kalender--------------- */
+
+#calendar {
+  width: 1000px;
+  margin: 0 auto;
+  background: var(--black-color2);
+  border: black 3px solid;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 80vh;
+}
+
+/* Header styling */
+.fc-toolbar {
+  background-color: var(--black-color2);
+  color: var(--white-color);
+  padding: 10px;
+}
+
+.fc-button {
+  background-color: var(--secondary-color) !important;
+  border: none;
+  color: var(--black-color2);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: bold !important;
+}
+
+/* Styling voor dagen in de kalender */
+.fc-daygrid-day {
+  background-color: var(--black-color3);
+  height: 20px !important;
+}
+
+.fc-day-today {
+  background-color: var(--black-color2) !important;
+  color: var(--white-color) !important;
+}
+
+.fc-scrollgrid-sync-inner a {
+  color: var(--white-color) !important;
+  font-weight: bold;
+}
+
+/* Hover-effect op dagen */
+.fc-daygrid-day:hover {
+  background-color: var(--black-color4);
+  cursor: pointer;
+}
+
+/* Styling voor events */
+.fc-event {
+  background-color: var(--secondary-color) !important;
+  border: none;
+  color: var(--black-color3);
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 0.9rem;
+}
+
+/* Event hover-effect */
+.fc-event:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--white-color) !important;
+  background-color: #99de19de !important;
+}
+
+.fc-daygrid-day-number {
+  color: var(--wite-color);
+}
+
+
+
+/* ---------------Aanbevolen printer--------------- */
+
+#recommendedprinter {
+  width: 1000px;
+  margin: 0 auto;
+  background: var(--black-color2);
+  box-shadow: var(--card-inset);
+  border-radius: 8px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 75vh; /* Fixed height to enable scrolling */
+  padding: 1rem; /* Add some padding for better spacing */
+}
+/* Custom scrollbar for WebKit browsers (Chrome, Safari) */
+#recommendedprinter::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--secondary-color);
+}
+
+#recommendedprinter::-webkit-scrollbar-track {
+  background-color: var(--black-color3);
+  border-radius: 4px;
+}
+
+#recommendedprinter::-webkit-scrollbar-thumb {
+  background-color: var(--gray-color3);
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+#recommendedprinter::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-color);
+  transition: background-color 0.5s ease;
+}
+
+.recommended-printer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-height: max-content;
+}
+
+.row {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+  border-radius: 25px;
+  background: linear-gradient(var(--black-color2), var(--black-color3)) padding-box;
+  box-shadow: var(--card-inset);
+}
+
+.row:hover{
+  transform: scale(1.05);
+  transition: 1s ease, transform 0.3s ease;
+  background: var(--secondary-color);
+}
+
+/* This applies to rows that contain a top-scorer element */
+.row:has(.top-scorer) {
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #0000;
+  border-radius: 12px;
+  background: linear-gradient(var(--black-color2), var(--black-color3)) padding-box, linear-gradient(
+        var(--angle),
+        var(--black-color),
+        var(--secondary-color)
+      ) border-box;
+  animation: 6s rotate linear infinite;
+  box-shadow: var(--card-inset);
+  
+}
+
+.row:has(.top-scorer):hover {
+  background: var(--secondary-color);
+  animation: 6s rotate backwards linear infinite;
+  transform: scale(1.05);
+  transition: 1s ease, transform 0.3s ease;
+}
+
+.printer-link {
+  display: block; /* Make the link a block element */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+}
+
+.printer-link:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.col-left img{
+  width: 140px;
+  height: 100%;
+  padding: 10px;
+}
+
+.col-middle p {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.col-right img{
+  width: 140px;
+  height: 100%;
+  padding-bottom: 20px;
+}

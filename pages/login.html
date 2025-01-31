@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Printafile login</title>
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div class="loginCard d-flex justify-content-center align-items-center"
+    style="height: 100vh; background-image: url(../images/background-image.jpg); background-position: center; background-size: cover; overflow-y: hidden;">
+    <div class="card w-100" style="max-width: 36rem; border: var(--secondary-color);">
+      <div class="card-body p-5" style="background-color: var(--secondary-color);">
+        <div class="logoContainer" style="display: flex; justify-content: center;">
+          <img src="../images/logo.png" alt="logo" style="width: 300px; height: auto;">
+        </div>
+        <form class="d-flex flex-column justify-content-center" id="loginForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Gebruikersnaam</label>
+            <input type="text" class="form-control" id="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Wachtwoord</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" required>
+              <button type="button" class="btn2 btn-outline-secondary toggle-password" id="togglePassword">
+                Toon wachtwoord
+              </button>
+            </div>            
+          </div>
+          <div class="registerText pb-3" style="text-align: center;">
+            <a href="../pages/register.html" class="registerText">Nog geen account? Registreer hier!</a>
+          </div>
+          <button type="submit" class="btn2">Login</button>
+        </form>
+        <div id="error-message" style="color: red; text-align: center; margin-top: 10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const passwordField = document.getElementById("password");
+      const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+      passwordField.setAttribute("type", type);
+      document.getElementById("togglePassword").textContent = type === "password" ? "Toon wachtwoord" : "Verberg wachtwoord";
+    });
+  </script>
+
+  <!-- Laad de WebSocket en login scripts als modules -->
+  <script type="module">
+    import '../js/websocket_client.js';
+    import { sendLoginRequest } from '../js/login.js';
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      sendLoginRequest(username, password);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

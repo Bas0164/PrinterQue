@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printafile dashboard-admin</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.scss">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/printerform.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="dashboard-student.html">Printafile</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="dashboard-admin.html" class="sidebar-link">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="print-calender.html" class="sidebar-link">
+                        <i class="bi bi-calendar-fill"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="printerform.html" class="sidebar-link">
+                        <i class="bi bi-printer-fill"></i>
+                        <span>Upload</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="profile.html" class="sidebar-link">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link" id="logout-button">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <div class="container d-flex mw-100 m-0 ps-5 pt-3 pb-3" style="background-color: var(--black-color2);">
+                <h3 id="welcome-message"></h3>
+            </div>
+
+            <div class="row d-flex">
+                <div class="col p-5">
+                    <div class="container pt-3 rounded-4"
+                        style=" box-shadow: var(--card-inset); background-color: var(--black-color2);">
+                        <div class="container d-flex mw-100 m-0 p-3;">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widgets col pt-5">
+                    <div class="d-flex flex-column justify-content-center text-center rounded-4 mb-4"
+                        style="background-color: var(--black-color2); width: 100%; max-width: 300px; height: auto; aspect-ratio: 1; box-shadow: var(--card-inset);">
+                        <a href="printerform.html" class="  ">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            <p class="uploadText text-center fs-1">Upload</p>
+                        </a>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center text-center rounded-4"
+                        style="background-color: var(--black-color2); width: 100%; max-width: 300px; height: auto; aspect-ratio: 1; box-shadow: var(--card-inset);">
+                        <img src="../images/3d-printing-filament.png" alt=""
+                            style="max-width: 50%; justify-content: center; align-self: center;">
+                        <p id="filament-value"></p>
+                        <div>
+                            <button class="btn btn-primary me-2" id="decrease-btn">-</button>
+                            <input type="number" id="filament-input" value="0" style="width: 50px; text-align: center;">
+                            <button class="btn btn-primary ms-2" id="increase-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container d-flex mw-100 m-0 ps-5 pt-2 pb-2" style="background-color: var(--black-color2);">
+                <h6>3D Printers</h6>
+            </div>
+            <div class="container mw-100 m-0 ps-5">
+                <div class="row">
+                    <div class="card-group gap-3 p-3">
+                        <div class="card text-center rounded-4">
+                            <div class="card-body" style="align-content: center; color: var(--white-color);">
+                                <img class="card-img-top" src="../images/3dprinter.png" alt="Card image cap" />
+                                <h4 class="card-title">Printer 1</h4>
+                                <p class="card-text">100%</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-center rounded-4">
+                            <div class="card-body" style="align-content: center; color: var(--white-color);">
+                                <img class="card-img-top" src="../images/3dprinter.png" alt="Card image cap" />
+                                <h4 class="card-title">Printer 1</h4>
+                                <p class="card-text">100%</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-center rounded-4">
+                            <div class="card-body" style="align-content: center; color: var(--white-color);">
+                                <img class="card-img-top" src="../images/3dprinter.png" alt="Card image cap" />
+                                <h4 class="card-title">Printer 1</h4>
+                                <p class="card-text">100%</p>
+                            </div>
+                        </div>
+                        <div class="card text-center rounded-4">
+                            <div class="card-body" style="align-content: center; color: var(--white-color);">
+                                <img class="card-img-top" src="../images/3dprinter.png" alt="Card image cap" />
+                                <h4 class="card-title">Printer 1</h4>
+                                <p class="card-text">100%</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-center rounded-4">
+                            <div class="card-body" style="align-content: center; color: var(--white-color);">
+                                <img class="card-img-top" src="../images/3dprinter.png" alt="Card image cap" />
+                                <h4 class="card-title">Printer 1</h4>
+                                <p class="card-text">100%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+
+            // Kalender
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'nl',
+                firstDay: 1,
+                initialView: 'customTwoWeeks',
+                views: {
+                    customTwoWeeks: {
+                        type: 'dayGrid',
+                        duration: { weeks: 2 },
+                        buttonText: '2 Weken'
+                    }
+                },
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'customTwoWeeks,dayGridMonth'
+                },
+                buttonText: {
+                    today: 'Vandaag',
+                    month: 'Maand',
+                    day: 'Dag'
+                },
+                events: 'events.php',
+                editable: true,
+                selectable: true,
+                dateClick: function (info) {
+                    alert('Geselecteerde datum: ' + info.dateStr);
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+    <script type="module">
+        import { checkAdminRole } from "../js/checkRole.js";
+        import { setupFilamentHandlers } from "../js/filament.js";
+        import { logoutUser } from "../js/user.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const userId = localStorage.getItem("user_id");
+
+            if (!userId) {
+                console.warn("Geen user_id gevonden. Doorsturen naar loginpagina.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Controleer de rol van de gebruiker
+            checkAdminRole(userId);
+
+            // Setup filament handlers
+            setupFilamentHandlers();
+        });
+
+        document.getElementById("logout-button").addEventListener("click", () => {
+            logoutUser();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

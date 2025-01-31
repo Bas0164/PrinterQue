@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printafile profile</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.scss">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="dashboard-student.html">Printafile</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="dashboard-student.html" class="sidebar-link">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="print-calender.html" class="sidebar-link">
+                        <i class="bi bi-calendar-fill"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="printerform.html" class="sidebar-link">
+                        <i class="bi bi-printer-fill"></i>
+                        <span>Upload</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="profile.html" class="sidebar-link">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a class="sidebar-link" id="logout-button">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main p-3 d-flex justify-content-center" style="align-items: center; text-align: center;">
+            <div class="card text-white p-5"
+                style="background-color: var(--black-color2); height: 80vh; width: 600px; box-shadow: var(--card-inset);">
+                <div class="card-body d-flex flex-column p-5" style="align-self:center;">
+                    <div class="img pb-5 text-center">
+                        <img class="card-img-top" src="../images/adaLogo.png" style="width: 200px; height: auto;" />
+                    </div>
+                    <div class="profile-info">
+                        <p id="profile-name" class="profile-field"></p>
+                        <p id="profile-email" class="profile-field"></p>
+                        <p id="profile-phone" class="profile-field"></p>
+                    </div>
+                </div>                
+                <a id="card-logout-button" class="btn">Logout</a>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { logoutUser, fetchUserDetailsByUserId } from "../js/user.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const userId = localStorage.getItem("user_id");
+
+            if (!userId) {
+                console.warn("Geen user_id gevonden. Doorsturen naar loginpagina.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Haal de gebruikersgegevens op en vul de velden in
+            fetchUserDetailsByUserId(userId, (userDetails) => {
+                if (!userDetails) {
+                    console.error("Geen gegevens gevonden voor de gebruiker. Uitloggen...");
+                    logoutUser();
+                    return;
+                }
+
+                // Vul de profielvelden in
+                document.getElementById("profile-name").textContent = `Naam: ${userDetails.username || "Onbekende gebruiker"}`;
+                document.getElementById("profile-email").textContent = `Email: ${userDetails.email || "Geen email beschikbaar"}`;
+                document.getElementById("profile-phone").textContent = `Telefoonnummer: 0${userDetails.phone || "Geen telefoonnummer beschikbaar"}`;
+            });
+
+            // Voeg logout-functionaliteit toe
+            document.getElementById("logout-button").addEventListener("click", logoutUser);
+            document.getElementById("card-logout-button").addEventListener("click", logoutUser);
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

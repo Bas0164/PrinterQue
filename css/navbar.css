@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #a2dae8;
+    --secondary-color: #9ADE19;
+    --white-color: #ffffff;
+    --info-color: #f8f8f8;
+    --error-color: #EB5757;
+    --black-color: #000000;
+    --black-color2: #1D1D1D;
+    --black-color3: #282828;
+    --gray-color: #333333;
+    --gray-color2: #4F4F4F;
+    --gray-color3: #828282;
+    --gray-color4: #BDBDBD;
+    --gray-color5: #E0E0E0;
+    --card-inset: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+    --font-family-base: 'Poppins', sans-serif; /* Base font family */
+    --font-size-small: 0.875rem; /* Small text, equivalent to 14px */
+    --font-size-base: 1rem; /* Base text, equivalent to 16px */
+    --font-size-medium: 1.25rem; /* Medium text, equivalent to 20px */
+    --font-size-large: 1.5rem; /* Large text, equivalent to 24px */
+    --font-size-xlarge: 2rem; /* Extra large text, equivalent to 32px */
+    --font-size-xxlarge: 3rem; /* Double extra large, equivalent to 48px */
+  }
+
+/* Basic CSS Reset and Font Settings */
+:root {
+  --font-family-base: 'Poppins', sans-serif; /* Base font family */
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: var(--black-color3);
+}
+
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    background-color: var(--black-color2);
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.sidebar-logo {
+    margin: auto 0;
+}
+
+.sidebar-logo a {
+    color: var(--secondary-color);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: var(--secondary-color);
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid var(--secondary-color);
+}
+
+.sidebar-item {
+    position: relative;
+}

@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #a2dae8;
+    --secondary-color: #9ADE19;
+    --white-color: #ffffff;
+    --info-color: #f8f8f8;
+    --error-color: #EB5757;
+    --black-color: #000000;
+    --black-color2: #1D1D1D;
+    --black-color3: #282828;
+    --gray-color: #333333;
+    --gray-color2: #4F4F4F;
+    --gray-color3: #828282;
+    --gray-color4: #BDBDBD;
+    --gray-color5: #E0E0E0;
+    --card-inset: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+    --font-family-base: 'Poppins', sans-serif; /* Base font family */
+    --font-size-small: 0.875rem; /* Small text, equivalent to 14px */
+    --font-size-base: 1rem; /* Base text, equivalent to 16px */
+    --font-size-medium: 1.25rem; /* Medium text, equivalent to 20px */
+    --font-size-large: 1.5rem; /* Large text, equivalent to 24px */
+    --font-size-xlarge: 2rem; /* Extra large text, equivalent to 32px */
+    --font-size-xxlarge: 3rem; /* Double extra large, equivalent to 48px */
+  }
+
+/* Basic CSS Reset and Font Settings */
+:root {
+  --font-family-base: 'Poppins', sans-serif; /* Base font family */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-base); /* Use Poppins for all text */
+  font-size: 16px; /* Default font size */
+  line-height: 1.5; /* Good readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+    min-height: 100vh; /* Ensure the body takes up the full viewport height */
+    background-color: var(--black-color3); /* Dark background for default styling */
+    color: var(--info-color); /* Default text color */
+  }
+  
+  a {
+    text-decoration: none; /* Remove default link underline */
+    color: var(--white-color);
+    
+  }
+  
+  ul, ol {
+    list-style: none; /* Remove list bullets and numbering */
+  }
+  
+  img {
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove inline spacing issues */
+    background-repeat: no-repeat;
+  }
+
+
+  /* cards */
+  .card img{
+    justify-self: center;
+    max-width: 50%;
+    height: auto;
+  }
+  
+  .card {
+    width: 30%;
+    background-color: var(--black-color2) !important;
+    box-shadow: var(--card-inset);
+  }
+
+  .filament-counter{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black-color2);
+    border-top-left-radius: 0.5rem;
+    box-shadow: var(--card-inset);
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .filament-counter p{
+    margin: 0;
+    padding: 0;
+    color: var(--white-color);
+    font-weight: 500;
+  }
+
+  .filament-counter img{
+    max-width: 50px;
+  }
+
+  .bi-plus-circle-fill{
+    font-size: 10rem;
+    color: var(--secondary-color); line-height: 1;
+  }
+
+  .option{
+    display: grid;
+    grid-template-columns: auto;
+  }
+
+  .progress-bar-green {
+    background-color: #9ADE19 !important;
+    color: var(--black-color2);
+    font-weight: bold;
+}
+
+  @media screen and (max-width: 1373px){
+    .widgets{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding:5rem;
+      gap: 1rem;
+    }
+  }
+ 
+@media screen and (max-width: 800px){
+    .card-group{
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1rem;
+    } 
+
+    .card{
+      width: 100%;
+    }
+
+    .filament-counter{
+      padding: 0.5rem;
+    }
+  }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Printafile register</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <header>
+    <div class="registerCard d-flex justify-content-center align-items-center" 
+    style="height: 100vh;  background-image: url(../images/background-image.jpg); background-position: center; background-size: cover; overflow-y: hidden;">
+      <div class="card" style="width: 36rem; border: var(--secondary-color);">
+        <div class="card-body p-5" style="background-color: var(--secondary-color);">
+          <div class="logoContainer" style="display: flex; justify-content: center;">
+            <img src="../images/logo.png" alt="logo" style="width: 300px; height: auto;">
+        </div>
+          <form style=" display:flex; justify-content: center; flex-direction: column;">
+            <div class="mb-3">
+              <label for="username" class="form-label">Gebruikersnaam</label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Mailadres</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Telefoonnummer</label>
+              <input type="phone" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3 pb-3">
+              <label for="password" class="form-label">Wachtwoord</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+
+            <div class="loginText pb-3" style="text-align: center;">
+              <a href="../pages/login.html" class="loginText">Heb je al een account? log in</a>
+            </div>
+            
+            <button type="submit" class="btn2">Registreer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </header>
+
+<!-- Laad de WebSocket en register scripts als modules -->
+<script type="module">
+  import '../js/websocket_client.js';
+  import { sendRegisterRequest } from '../js/register.js';
+
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+
+    // Telefoonnummer validatie: maximaal 10 cijfers
+    if (!/^\d{1,10}$/.test(phone)) {
+      alert('Telefoonnummer mag maximaal 10 cijfers bevatten.');
+      return;
+    }
+
+    // Wachtwoord validatie
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+    if (!passwordRegex.test(password)) {
+      alert('Wachtwoord moet minimaal 8 tekens lang zijn, 1 hoofdletter en een speciaal teken bevatten.');
+      return;
+    }
+
+    // Verstuur registratie via WebSocket
+    sendRegisterRequest(username, email, phone, password);
+  });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
+</html>

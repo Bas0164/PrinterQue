@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #a2dae8;
+  --secondary-color: #9ADE19;
+  --white-color: #ffffff;
+  --info-color: #f8f8f8;
+  --error-color: #EB5757;
+  --black-color: #000000;
+  --black-color2: #1D1D1D;
+  --black-color3: #282828;
+  --gray-color: #333333;
+  --gray-color2: #4F4F4F;
+  --gray-color3: #828282;
+  --gray-color4: #BDBDBD;
+  --gray-color5: #E0E0E0;
+  --card-inset: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --font-family-base: 'Poppins', sans-serif; /* Base font family */
+  --font-size-small: 0.875rem; /* Small text, equivalent to 14px */
+  --font-size-base: 1rem; /* Base text, equivalent to 16px */
+  --font-size-medium: 1.25rem; /* Medium text, equivalent to 20px */
+  --font-size-large: 1.5rem; /* Large text, equivalent to 24px */
+  --font-size-xlarge: 2rem; /* Extra large text, equivalent to 32px */
+  --font-size-xxlarge: 3rem; /* Double extra large, equivalent to 48px */
+}
+
+/* Basic CSS Reset and Font Settings */
+:root {
+--font-family-base: 'Poppins', sans-serif; /* Base font family */
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-base);
+  /* Use Poppins for all text */
+  font-size: 16px;
+  /* Default font size */
+  line-height: 1.5;
+  /* Good readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  /* Ensure the body takes up the full viewport height */
+  background-color: var(--black-color2);
+  /* Light background for default styling */
+  color: var(--info-color);
+  /* Default text color */
+}
+
+a {
+  text-decoration: none;
+  /* Remove default link underline */
+
+}
+
+ul,
+ol {
+  list-style: none;
+  /* Remove list bullets and numbering */
+}
+
+img {
+  max-width: 100%;
+  /* Make images responsive */
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove inline spacing issues */
+  background-repeat: no-repeat;
+}
+
+
+
+/* ----------------Splash Screen---------------- */
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.splash-content h1 {
+  font-size: var(--font-size-xxlarge);
+  color: var(--gray-color2);
+}
+
+.splash-content p {
+  font-size: var(--font-size-medium);
+  color: var(--gray-color3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.splash-content {
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+
+/* ----------------Login---------------- */
+.loginText:hover {
+  transition: .5s;
+  color: var(--white-color);
+}
+
+
+
+/* ----------------Registreer---------------- */
+.registerText:hover {
+  transition: .5s;
+  color: var(--white-color);
+}
+
+.btn{
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover{
+  background-color: var(--primary-color);
+}
+
+.btn2{
+  background-color: var(--primary-color);
+  color: var(--black-color3);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.btn2:hover{
+  transition: 0.5s;
+  background-color: var(--gray-color4);
+  color: var(--white-color);
+}
+
+/* -----------------Profile---------------- */
+
+.profile-info {
+  text-align: left; 
+  padding-left: 20px; 
+}
+
+.profile-field {
+  font-size: 1.4rem; 
+  font-weight: bold;
+  line-height: 3rem; 
+  margin: 0;
+  color: #ffffff;
+}

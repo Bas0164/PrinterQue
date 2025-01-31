@@ -1,0 +1,42 @@
+
+:root {
+    --primary-color: #a2dae8;
+    --secondary-color: #9ADE19;
+    --white-color: #ffffff;
+    --info-color: #f8f8f8;
+    --error-color: #EB5757;
+    --black-color: #000000;
+    --black-color2: #1D1D1D;
+    --black-color3: #282828;
+    --gray-color: #333333;
+    --gray-color2: #4F4F4F;
+    --gray-color3: #828282;
+    --gray-color4: #BDBDBD;
+    --gray-color5: #E0E0E0;
+    --card-inset: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+    --font-family-base: 'Poppins', sans-serif; /* Base font family */
+    --font-size-small: 0.875rem; /* Small text, equivalent to 14px */
+    --font-size-base: 1rem; /* Base text, equivalent to 16px */
+    --font-size-medium: 1.25rem; /* Medium text, equivalent to 20px */
+    --font-size-large: 1.5rem; /* Large text, equivalent to 24px */
+    --font-size-xlarge: 2rem; /* Extra large text, equivalent to 32px */
+    --font-size-xxlarge: 3rem; /* Double extra large, equivalent to 48px */
+  }
+
+.table>:not(caption)>*>*{
+    background-color: var(--black-color2);
+    justify-content: center;
+    color: var(--white-color);
+    text-align: center; 
+    border: none;
+    
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    justify-self: center;
+}
